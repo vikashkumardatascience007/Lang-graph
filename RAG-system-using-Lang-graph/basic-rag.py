@@ -1,10 +1,10 @@
 
 from langchain_core.documents import Document
-#from langchain_community.chat_models import ChatOllama
+from langchain_community.chat_models import ChatOllama
 from langchain_community.vectorstores import Chroma
-#from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_ollama import ChatOllama
+from langchain_community.embeddings import HuggingFaceEmbeddings
+#from langchain_huggingface import HuggingFaceEmbeddings
+#from langchain_ollama import ChatOllama
 
 embedding_model = HuggingFaceEmbeddings(model_name="./all-MiniLM-L6-v2")
 
