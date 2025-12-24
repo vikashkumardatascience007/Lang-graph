@@ -161,7 +161,8 @@ def question_classifier(state: AgentState):
 def on_topic_router(state: AgentState):
     print("Entering on_topic_router")
     on_topic = state.get("on_topic", "").strip().lower()
-    if on_topic == "yes":
+    # Check if it said 'yes' or if it returned a number (like '1.0' or '1')
+    if "yes" in on_topic or any(char.isdigit() for char in on_topic):
         print("Routing to retrieve")
         return "retrieve"
     else:
@@ -335,9 +336,9 @@ graph = workflow.compile(checkpointer=checkpointer)
 
 
 input_data = {"question": HumanMessage(content="What does the company Apple do?")}
-graph.invoke(input=input_data, config={"configurable": {"thread_id": 1}})
+res=graph.invoke(input=input_data, config={"configurable": {"thread_id": 1}})
 
-
+print(res)
 input_data = {
     "question": HumanMessage(
         content="What is the cancelation policy for Peak Performance Gym memberships?"
